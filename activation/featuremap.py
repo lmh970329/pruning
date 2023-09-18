@@ -4,9 +4,8 @@ import torch
 
 class OutputFeaturemapPrune():
 
-    def __init__(self, sparsity, n_dims, score_type='max') -> None:
+    def __init__(self, sparsity, score_type='max') -> None:
         self.sparsity = sparsity
-        self.n_dims = n_dims
         self.score_type = score_type
 
     def __call__(self, module, input, output) -> Any:
@@ -22,7 +21,7 @@ class OutputFeaturemapPrune():
 
             mask = torch.ones_like(score)
 
-            n_prune = int(C * 0.5)
+            n_prune = int(C * self.sparsity)
 
             indices = torch.topk(score, n_prune, largest=False).indices
 
