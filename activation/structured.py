@@ -21,7 +21,7 @@ class OutputFeaturemapPrune(ActivationPrune):
         elif self.score_type == 'l2':
             score = torch.norm(output.flatten(start_dim=2), p=2, dim=-1).values
         else:
-            score = torch.norm(output.flatten(start_dim=2), p=2, dim=-1).values
+            score = torch.norm(output.flatten(start_dim=2), p=1, dim=-1).values
 
         return score
 
