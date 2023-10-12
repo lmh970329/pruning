@@ -9,7 +9,7 @@ class IterativePruningManager(object):
 
         assert (frequency is not None and pruning_points is None) or (pruning_points is not None and frequency is None)
 
-        assert (pruning_points is not None) and (len(pruning_points) == steps) 
+        assert (pruning_points is not None) and (len(pruning_points) == steps)
 
         self.__methods: MutableSet[BasePruner] = set()
         self.__schedulers: MutableSet[BaseSparsityScheduler] = set()
