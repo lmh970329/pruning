@@ -29,3 +29,17 @@ class OutputActivationPrune(ActivationPrune):
         mask.view(-1)[prune_indices] = 0
 
         return mask
+    
+
+class RandomActivationPrune(ActivationPrune):
+
+    def __init__(self, sparsity) -> None:
+        super().__init__(sparsity)
+
+
+    def compute_mask(self, output):
+        return NotImplementedError("Not implemented!!!")
+
+
+    def __call__(self, module: nn.Module, input, output: torch.Tensor):
+        return nn.functional.dropout(output, self.sparsity, training=module.training)
